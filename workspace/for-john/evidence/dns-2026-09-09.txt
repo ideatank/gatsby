@@ -1,0 +1,26 @@
+JD MAIL — RAW DNS EVIDENCE
+captured: 2026-09-09 17:37:59 UTC
+method  : PHP dns_get_record() — no SMTP, no third-party mail server contacted
+note    : dig/host/nslookup are not installed in this container; PHP's resolver was used.
+--------------------------------------------------------------------
+
+== SPF / TXT :: johndelavera.com ==
+v=spf1 ip4:50.28.87.135 +a +mx +ip4:169.60.154.200 +ip4:206.221.182.218 +ip4:75.126.204.26 ~all
+
+== DMARC :: _dmarc.johndelavera.com ==
+v=DMARC1;p=none;sp=none;adkim=r;aspf=r;pct=100;fo=0;rf=afrf;ri=86400;rua=mailto:bd154549761d.a@dmarcinput.com,mailto:dmarc-contact@johndelavera.com; ruf=mailto:bd154549761d.f@dmarcinput.com; fo=1
+
+== DKIM default selector :: default._domainkey.johndelavera.com ==
+v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvywa9/CRQ6FSRX5iFT3RUy5Ewh5czvBNfCuSAhIKsAp0jbvEkI+4066Xk890pRSUMosJU4T3lw0MgLSTxzYGtG/o8bXPwyddHIsUTlGYB3zzbixXqt9qQmyvjERfycBGRN6CW/EHosxU+kLupEtFZ+LDFoONUNuVNyjJ+ikQ2N+FfUfr/JG2/CIDU7NGgM7UwN0grNOdd0sxngUnAfT4OoTVgJ1yhYCnCjYfOu1NQegKobATmctbbqAk1xezYyqeolMgFUFHtGWBd9VluRRou0ZS6f5iJt/j/PriN2FU94wb70fHjD1f8d2zpJRnt5l3QptqXDHn9DmDSwIfDokBlwIDAQAB;
+
+== MX :: johndelavera.com ==
+10 mail.johndelavera.com
+
+== A :: johndelavera.com ==
+50.28.87.135
+
+== A mail host :: mail.johndelavera.com ==
+50.28.87.135
+
+== ABSENT DKIM SELECTORS (probed, no record) ==
+mail, dkim, k1
