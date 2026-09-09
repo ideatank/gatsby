@@ -1,0 +1,4 @@
+# Subscriber data is personal data and must NOT be committed to a git repo.
+# Keep exports and derived lists in the scratchpad or locally.
+*.csv
+*.zip
