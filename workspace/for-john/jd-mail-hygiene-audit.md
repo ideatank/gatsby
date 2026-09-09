@@ -151,11 +151,14 @@ AWeber and standing up a new sender) and remove the `fo=0`. One tag edit in cPan
 
 ### Finding 2 — three IPs in SPF are not your mail host and are probably stale AWeber-era authorisations
 
-```
-169.60.154.200
-206.221.182.218
-75.126.204.26
-```
+| IP | PTR (added 2026-09-09) |
+|----|-----|
+| `169.60.154.200` | `c8.9a.3ca9.ip4.static.sl-reverse.com` — SoftLayer / IBM Cloud |
+| `206.221.182.218` | **no reverse DNS at all** |
+| `75.126.204.26` | `1a.cc.7e4b.ip4.static.sl-reverse.com` — SoftLayer / IBM Cloud |
+
+`sl-reverse.com` is SoftLayer, the infrastructure AWeber ran on — so two are almost certainly
+AWeber-era, and the third is unidentifiable.
 
 None is `50.28.87.135`. Each of these is a standing authorisation for *someone* to send mail as
 `johndelavera.com` and pass SPF. While AWeber is live that is correct and necessary. The moment you
@@ -274,6 +277,23 @@ log format in the sample output, tighten the `$FAMILIES` array to the exact toke
 Item 5 is the one that protects the asset. A 441-address list is small enough that a bad first send
 does no damage by volume — but it does damage by *pattern*, and the pattern is what mailbox
 providers score. Warm it slowly.
+
+---
+
+## Follow-up delivered 2026-09-09
+
+Replacement SPF and DMARC records — staged, linted, with a verification gate between each stage —
+are in **`dns-records.md`**. Two additional tools:
+
+- `tools/verify-dns.php <domain>` — asserts live SPF/DKIM/DMARC state. Exit 0 clean / 1 warnings /
+  2 errors. Currently exits **2** on `johndelavera.com` because of the duplicate `fo` tag; that
+  flip to exit 1 is how you prove the fix landed.
+- `tools/lint-record.php <spf|dmarc> '<record>'` — offline paste-safety check for a candidate
+  record before it touches the zone.
+
+Note added to Finding 2: `50.28.87.135` reverse-resolves to `gutsy.simpleology.com`, a shared
+Liquid Web box. Reverse DNS exists (Gmail's bulk-sender requirement is met), but sending reputation
+is pooled with every other tenant on that server.
 
 ---
 

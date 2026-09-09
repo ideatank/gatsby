@@ -24,3 +24,9 @@ v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvywa9/CRQ6FSRX5iFT
 
 == ABSENT DKIM SELECTORS (probed, no record) ==
 mail, dkim, k1
+
+== PTR of SPF-authorized IPs (added 2026-09-09) ==
+50.28.87.135       -> gutsy.simpleology.com
+169.60.154.200     -> c8.9a.3ca9.ip4.static.sl-reverse.com
+206.221.182.218    -> (no reverse DNS)
+75.126.204.26      -> 1a.cc.7e4b.ip4.static.sl-reverse.com
